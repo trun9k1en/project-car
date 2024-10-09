@@ -1,4 +1,5 @@
 const products = "/products"
 const productTypes = "/product-types"
+const product = "/product"
 
-export {products, productTypes}
+export {products, productTypes, product}
