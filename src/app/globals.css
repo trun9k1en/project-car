@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.login-input:focus {
+  border-color: white !important;
+}

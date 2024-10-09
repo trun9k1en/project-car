@@ -3,6 +3,11 @@ import "./globals.css";
 import { LoadingProvider } from "@/context/loading-context";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HeaderComponent from "@/components/header-component";
+import Navbar from "@/components/navbar";
+import Banner from "@/components/banner";
+import Services from "@/components/services";
+import Footer from "@/components/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -14,9 +19,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="w-full h-full">
-        <div className="flex min-h-screen min-w-screen flex-col min-w-full bg-slate-100	!p-0 items-center grid justify-items-center">
+        <div className="flex min-h-screen min-w-screen flex-col min-w-full bg-[#FFFFFF]	!p-0 items-center grid justify-items-center">
+          <HeaderComponent />
+          <Navbar />
+          <Banner />
           <LoadingProvider>{children}</LoadingProvider>
+          <Services />
           <ToastContainer />
+          <Footer />
         </div>
       </body>
     </html>
