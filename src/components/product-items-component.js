@@ -1,11 +1,38 @@
+"use client"
+
+import Rating from "@mui/material/Rating/Rating";
+import { useEffect, useState } from "react";
+
 export default function ProductItemsComponent(item) {
-  const { images = [], name = "", price, originalPrice, rate, promotion } = item;
+    const [image, setImage] = useState(null);
+  const {
+    images = [],
+    name = "",
+    price,
+    originalPrice,
+    rate,
+    promotion,
+  } = item;
+  
+  useEffect(() => {
+    if(images) {
+        setImage(images(0))
+    }
+  }, [images]) 
   return (
     <div className="flex">
-      <img src={images} className="border" />
+      <img src={"http://192.168.1.9:8080" + image} className="border w-[470px] h-[470px]" />
       <div>
-        <div>{name}</div>
-        <div>{rate}</div>
+        <div className="text-3xl text-[#474a62]">{name}</div>
+        <div>
+          <Rating
+            name="half-rating"
+            defaultValue={0}
+            value={rate}
+            precision={0.5}
+            readOnly
+          />
+        </div>
         <div className="flex">
           <div>{price}</div>
           <div>{originalPrice}</div>

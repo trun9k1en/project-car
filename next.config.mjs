@@ -73,11 +73,15 @@ const nextConfig = {
              // Đường dẫn nội bộ của ứng dụng
       },
       {
-        source: '/',            // Đường dẫn yêu cầu từ phía người dùng
+        source: '/san-pham',            // Đường dẫn yêu cầu từ phía người dùng
         destination: '/user/products', 
              // Đường dẫn nội bộ của ứng dụng
       },
-
+      {
+        source: '/san-pham/:id',            // Đường dẫn yêu cầu từ phía người dùng
+        destination: '/user/products/:id', 
+             // Đường dẫn nội bộ của ứng dụng
+      },
     ];
   },
     // exportPathMap() {
