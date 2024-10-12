@@ -27,51 +27,7 @@ const nextConfig = {
   // },
   async rewrites() {
     return [
-      {
-        source: '/admin',             // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/auth',
-     // Đường dẫn thực tế đến API bên ngoài
-      },
-      {
-        source: '/bang-dieu-khien',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard',    
-         // Đường dẫn nội bộ của ứng dụng
-      },
-      {
-        source: '/qllh',             // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/class-room', 
-      // Đường dẫn thực tế đến API bên ngoài
-      },
-      {
-        source: '/quan-ly-sinh-vien',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/alumunus', 
-             // Đường dẫn nội bộ của ứng dụng
-      },
-      {
-        source: '/quan-ly-sinh-vien/:id',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/alumunus/[id]?id=:id', 
-             // Đường dẫn nội bộ của ứng dụng
-      },
-      {
-        source: '/quan-ly-giang-vien',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/teachers', 
-             // Đường dẫn nội bộ của ứng dụng
-      },
-      {
-        source: '/quan-ly-thi',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/courses', 
-             // Đường dẫn nội bộ của ứng dụng
-      },
-      {
-        source: '/quan-ly-thi/:id',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/courses/[id]', 
-             // Đường dẫn nội bộ của ứng dụng
-      },
-      {
-        source: '/quan-ly-lich-lam-viec',            // Đường dẫn yêu cầu từ phía người dùng
-        destination: '/admin/dashboard/calendar-daily', 
-             // Đường dẫn nội bộ của ứng dụng
-      },
+      
       {
         source: '/san-pham',            // Đường dẫn yêu cầu từ phía người dùng
         destination: '/user/products', 

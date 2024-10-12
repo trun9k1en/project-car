@@ -17,9 +17,9 @@ export default function Products() {
     }
   ];
   return (
-    <div>
+    <div className="flex flex-col">
       {arraytype.map((m,index) => {
-        return <div key={index}>{ProductComponent(m)}</div>;
+        return <div key={index}><ProductComponent index={index} name={m.name} /></div>;
       })}
     </div>
   );

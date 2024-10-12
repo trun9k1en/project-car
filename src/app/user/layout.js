@@ -25,6 +25,11 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { useRouter } from "next/navigation";
+import Banner from "@/components/banner";
+import Footer from "@/components/footer";
+import HeaderComponent from "@/components/header-component";
+import Navbar from "@/components/navbar";
+import Services from "@/components/services";
 
 const drawerWidth = 240;
 const menus = [
@@ -48,7 +53,6 @@ const menus = [
     name: "Hỗ trợ",
     url: "/ho-tro",
   },
-  
 ];
 
 const openedMixin = (theme) => ({
@@ -84,7 +88,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 // @ts-ignore
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-// @ts-ignore
+  // @ts-ignore
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
@@ -103,7 +107,7 @@ const AppBar = styled(MuiAppBar, {
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
-// @ts-ignore
+  // @ts-ignore
 })(({ theme, open }) => ({
   width: drawerWidth,
   flexShrink: 0,
@@ -132,8 +136,14 @@ export default function LayoutNavigation({ children }) {
   };
   const router = useRouter();
   return (
-    <main className="flex w-[1200px] items-center grid justify-items-center">
-    {children}
-  </main>
+    <main className="flex flex-col min-h-screen min-w-screen  min-w-full bg-[#FFFFFF]	!p-0 items-center  justify-items-center">
+      <HeaderComponent />
+      <Navbar />
+      <Banner />
+      {children}
+      <Services />
+      <Footer />
+    
+    </main>
   );
 }

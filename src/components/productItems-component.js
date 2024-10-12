@@ -1,10 +1,10 @@
 "use client"
-
-import Rating from "@mui/material/Rating/Rating";
 import { useEffect, useState } from "react";
+import Rating from "@mui/material/Rating/Rating";
+
 
 export default function ProductItemsComponent(item) {
-    const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null);
   const {
     images = [],
     name = "",
@@ -16,12 +16,12 @@ export default function ProductItemsComponent(item) {
   
   useEffect(() => {
     if(images) {
-        setImage(images(0))
+        setImage(images[0])
     }
   }, [images]) 
   return (
-    <div className="flex">
-      <img src={"http://192.168.1.9:8080" + image} className="border w-[470px] h-[470px]" />
+     <div className="flex">
+      <img src={"http://192.168.1.9:8080" + images[0]} className="border w-[470px] h-[470px]" />
       <div>
         <div className="text-3xl text-[#474a62]">{name}</div>
         <div>

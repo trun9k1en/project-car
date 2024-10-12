@@ -2,12 +2,11 @@
 
 import axiosInstance from "@/axios/api-config";
 import { product } from "@/axios/endpoints";
-import ProductItemsComponent from "@/components/product-items-component";
+import ProductItemsComponent from "@/components/productItems-component";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 export default function ProductItems() {
   const params = useParams();
-
   const [products, setProductItems] = useState(null);
   useEffect(() => {
     if(params.id){
@@ -23,6 +22,7 @@ export default function ProductItems() {
 
   return (
     <div className="flex">
+   
       {products ? ProductItemsComponent(products) :null}
     </div>
   );
