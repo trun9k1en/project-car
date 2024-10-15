@@ -49,13 +49,13 @@ export default function HeaderComponent() {
             <SearchIcon sx={{ fontSize: 39, color: "#FFFFFF" }} className="bg-[#03BE1CFF]" />
           </div>
       </div>
-      <div className="flex justify-content-center">
+      <button className="flex justify-content-center">
         <ShoppingCartIcon sx={{ fontSize: 40, color: "#99FF00" }} />
         <div className="ml-1">
           <div className="font-bold">Giỏ hàng:</div>
           <div>Sản phẩm</div>
         </div>
-      </div>
+      </button>
     </div>
   );
 }

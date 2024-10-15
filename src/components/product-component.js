@@ -23,6 +23,7 @@ export default function ProductComponent({ index, name }) {
       });
     }
   }, []);
+  const [textActive, setTextActive] = useState(0);
   return (
     <div className="flex flex-col">
       {index != 2 ? (

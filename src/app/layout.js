@@ -1,3 +1,4 @@
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LoadingProvider } from "@/context/loading-context";
@@ -8,6 +9,7 @@ import Navbar from "@/components/navbar";
 import Banner from "@/components/banner";
 import Services from "@/components/services";
 import Footer from "@/components/footer";
+import { CartProvider } from "@/provider/CartContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -26,7 +28,6 @@ export default function RootLayout({ children }) {
           <CartProvider>
           <LoadingProvider>{children}</LoadingProvider>
           </CartProvider>
-          
           <Services />
           <ToastContainer />
           <Footer />
