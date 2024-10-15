@@ -23,7 +23,10 @@ export default function RootLayout({ children }) {
           <HeaderComponent />
           <Navbar />
           <Banner />
+          <CartProvider>
           <LoadingProvider>{children}</LoadingProvider>
+          </CartProvider>
+          
           <Services />
           <ToastContainer />
           <Footer />

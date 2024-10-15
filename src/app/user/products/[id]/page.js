@@ -10,20 +10,29 @@ export default function ProductItems() {
 
   const [products, setProductItems] = useState(null);
   useEffect(() => {
-    if(params.id){
-        axiosInstance.get(product + "?id=" + params.id).then((response) => {
-            if (response.data.data) {
-              setProductItems(response.data.data);
-              console.log(response.data.data);
-            }
-          });
+    if (params.id) {
+      axiosInstance.get(product + "?id=" + params.id).then((response) => {
+        if (response.data.data) {
+          setProductItems(response.data.data);
+          console.log(response.data.data);
+        }
+      });
     }
   }, [params.id]);
-  
 
   return (
     <div className="flex">
-      {products ? ProductItemsComponent(products) :null}
+      {products ? (
+        <ProductItemsComponent
+          images={products.images}
+          name={products.name}
+          price={products.price}
+          originalPrice={products["original-price"]}
+          rate={products.rate}
+          promotion={products.promotion}
+          description={products.description}
+        />
+      ) : null}
     </div>
   );
 }

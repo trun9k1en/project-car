@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import axiosInstance from "@/axios/api-config";
 import { products, productTypes } from "@/axios/endpoints";
@@ -25,20 +25,35 @@ export default function ProductComponent({ index, name }) {
   }, []);
   return (
     <div className="flex flex-col">
-      <div className="self-center">
-        <div className="text-4xl text-[#474a62] font-medium mb-8 mt-8">
-          {name}
+      {index != 2 ? (
+        <div className="flex items-center justify-between">
+          <img src="/bg_title.webp" className="w-[417px] h-[22px]" />
+          <div className="text-4xl text-[#474a62] font-medium mb-8 mt-8">
+            {name}
+          </div>
+          <img src="/bg_title.webp" className="w-[417px] h-[22px]" />
         </div>
-      </div>
+      ) : (
+        <div className="self-center">
+          <div className="text-4xl text-[#474a62] font-medium mb-8 mt-8">
+            {name}
+          </div>
+        </div>
+      )}
+
       <div className="flex justify-between w-[720px] self-center">
         {index == 2
           ? types.map((m) => (
-              <div className="text-base text-[#474a62] hover:text-[#03BE1CFF]">{m.name}</div>
+              <div className="text-base text-[#474a62] hover:text-[#03BE1CFF]">
+                {m.name}
+              </div>
             ))
           : null}
       </div>
       <div className="grid grid-cols-5 gap-4">
-        {data.map((m) =>  <div key={m.name}>{ProductItem(m)}</div>)}
+        {data.map((m) => (
+          <div key={m.name}>{ProductItem(m)}</div>
+        ))}
       </div>
     </div>
   );
