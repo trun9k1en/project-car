@@ -16,6 +16,7 @@ export default function ProductItemsComponent(item) {
     promotion,
     save = originalPrice - price,
     description,
+    onClickButton = () => {},
   } = item;
   const [html, setHtml] = useState("");
   console.log("html", html);
@@ -136,7 +137,10 @@ export default function ProductItemsComponent(item) {
             </button>
           </div>
           <div className="flex">
-            <button className="flex w-[270px] py-3 text-sm text-[#FFFFFF] font-bold justify-center items-center mr-4 bg-[#39b54a] rounded-md hover:bg-white hover:text-[#39b54a] hover:border hover:border-[#39b54a]">
+            <button
+              className="flex w-[270px] py-3 text-sm text-[#FFFFFF] font-bold justify-center items-center mr-4 bg-[#39b54a] rounded-md hover:bg-white hover:text-[#39b54a] hover:border hover:border-[#39b54a]"
+              onClick={onClickButton}
+            >
               MUA LẺ
               <PhoneIcon
                 sx={{ fontSize: 20, color: "#FF0000" }}
@@ -159,10 +163,11 @@ export default function ProductItemsComponent(item) {
         >
           MÔ TẢ
         </button>
-        <button className={`text-2xl text-[#474A62] font-bold p-4 ${
-          activeContent == 2 ? `border-b-2 border-b-[#39b54a]` : null
-        }`}
-        onClick={() => handleContentClick(2)}
+        <button
+          className={`text-2xl text-[#474A62] font-bold p-4 ${
+            activeContent == 2 ? `border-b-2 border-b-[#39b54a]` : null
+          }`}
+          onClick={() => handleContentClick(2)}
         >
           CHÍNH SÁCH BẢO HÀNH
         </button>

@@ -1,3 +1,4 @@
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LoadingProvider } from "@/context/loading-context";
@@ -27,7 +28,6 @@ export default function RootLayout({ children }) {
           <CartProvider>
           <LoadingProvider>{children}</LoadingProvider>
           </CartProvider>
-          
           <Services />
           <ToastContainer />
         </div>
