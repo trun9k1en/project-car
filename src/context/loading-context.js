@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React, { createContext, useState, useContext } from 'react';
-
+import React, { createContext, useState, useContext } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Tạo Context
 const LoadingContext = createContext(null);
@@ -15,8 +15,7 @@ export const LoadingProvider = ({ children }) => {
 
   return (
     <LoadingContext.Provider value={{ loading, showLoading, hideLoading }}>
-      {children}
- 
+      {loading ? <CircularProgress /> : children}
     </LoadingContext.Provider>
   );
 };

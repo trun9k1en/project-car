@@ -2,14 +2,16 @@
 
 import axiosInstance from "@/axios/api-config";
 import { products, productTypes } from "@/axios/endpoints";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductItem from "./product-item";
+import { LoadingProvider, useLoading } from "@/context/loading-context";
 
 export default function ProductComponent({ index, name }) {
   const [data, setProducts] = useState([]);
   const [types, setTypes] = useState([]);
+  const [type,setType] = useState(0);
+  
   useEffect(() => {
-    console.log("index", index);
     axiosInstance.get(products + "?type=" + index).then((response) => {
       if (response.data.data) {
         setProducts(response.data.data);
@@ -19,10 +21,28 @@ export default function ProductComponent({ index, name }) {
       axiosInstance.get("product-types?skip=3").then((response) => {
         if (response.data.data) {
           setTypes(response.data.data);
+          setType(response.data.data[0].type)
         }
       });
     }
   }, []);
+  useEffect(() =>{
+    if(type){
+      setProducts([]);
+ 
+      axiosInstance.get(products + "?type=" + type).then((response) => {
+        if (response.data.data) {
+          console.log('chay vao day')
+          setProducts([...response.data.data]);
+        }
+        else{
+          setProducts([]);
+  
+        }
+        // hideLoading()
+      });
+    }
+  },[type])
   const [textActive, setTextActive] = useState(0);
   return (
     <div className="flex flex-col">
@@ -45,7 +65,7 @@ export default function ProductComponent({ index, name }) {
       <div className="flex justify-between w-[720px] self-center">
         {index == 2
           ? types.map((m) => (
-              <div className="text-base text-[#474a62] hover:text-[#03BE1CFF]">
+              <div onClick={()=>setType(m.type)} className="text-base text-[#474a62] hover:text-[#03BE1CFF]">
                 {m.name}
               </div>
             ))

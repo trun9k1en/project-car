@@ -16,14 +16,14 @@ export default function ProductItemsComponent(item) {
     promotion,
     save = originalPrice - price,
     description,
-    onClickButton = () => {},
+    onClick,
   } = item;
   const [html, setHtml] = useState("");
-  console.log("html", html);
+ 
   useEffect(() => {
     axiosInstance.get("/htmls/" + description).then((res) => {
       if (res) {
-        console.log(res.data);
+        
         setHtml(res.data);
       }
     });
@@ -139,7 +139,7 @@ export default function ProductItemsComponent(item) {
           <div className="flex">
             <button
               className="flex w-[270px] py-3 text-sm text-[#FFFFFF] font-bold justify-center items-center mr-4 bg-[#39b54a] rounded-md hover:bg-white hover:text-[#39b54a] hover:border hover:border-[#39b54a]"
-              onClick={onClickButton}
+              onClick={onClick}
             >
               MUA LẺ
               <PhoneIcon

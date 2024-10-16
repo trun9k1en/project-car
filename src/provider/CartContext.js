@@ -1,13 +1,9 @@
 "use client"
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 // Tạo Context với giá trị mặc định
-export const CartContext = createContext({
-    cart: [],
-    addToCart: () => {},
-    removeFromCart: () => {}
-});
 
+const CartContext = createContext(null);
 // Tạo Provider
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
@@ -26,3 +22,5 @@ export const CartProvider = ({ children }) => {
         </CartContext.Provider>
     );
 };
+
+export const useCartContext = () => useContext(CartContext);

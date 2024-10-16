@@ -1,4 +1,3 @@
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { LoadingProvider } from "@/context/loading-context";
@@ -22,13 +21,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="w-full h-full">
         <div className="flex min-h-screen min-w-screen flex-col min-w-full bg-[#FFFFFF]	!p-0 items-center grid justify-items-center">
-          <HeaderComponent />
-          <Navbar />
-          <Banner />
-          <CartProvider>
-          <LoadingProvider>{children}</LoadingProvider>
-          </CartProvider>
-          <Services />
+          <LoadingProvider>
+            <CartProvider >{children}</CartProvider>
+          </LoadingProvider>
           <ToastContainer />
         </div>
       </body>
