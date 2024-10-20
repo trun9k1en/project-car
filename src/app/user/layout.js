@@ -140,7 +140,7 @@ export default function LayoutNavigation({ children }) {
       <HeaderComponent />
       <Navbar />
       <Banner />
-      {children}
+      <div className="flex flex-col px-6 max-w-[1200px] ">  {children}</div>
       <Services />
       <Footer />
     

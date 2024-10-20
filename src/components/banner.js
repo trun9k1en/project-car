@@ -5,11 +5,13 @@ import DropDownComponent from "./dropdown-component";
 import { useEffect } from "react";
 import { car, carTypes } from "@/axios/endpoints";
 import axiosInstance from "@/axios/api-config";
-
+import { usePathname } from 'next/navigation'
 export default function Banner() {
   const [activeButton, setActiveButton] = useState(1);
   const [carCompany, setCarCompany] = useState([]);
   const [carName, setCarName] = useState([]);
+  const pathname = usePathname()
+
   const [selectedCarCompanyId, setSelectedCarCompanyId] = useState(null);
   const handleButtonClick = (buttonNumber) => {
     setActiveButton(buttonNumber);
@@ -33,7 +35,7 @@ export default function Banner() {
  
   }, [selectedCarCompanyId]);
   return (
-    <div className="flex w-full bg-[url('/slider_1.webp')] bg-cover h-[500px] relative">
+    <div className={`${pathname !== "/san-pham" ? "hidden" : "relative"} flex w-full bg-[url('/slider_1.webp')] bg-cover h-[500px] `}>
       <div className="w-[500px] h-[345px] backdrop-brightness-75 text-center absolute left-20 top-20">
         <div className="text-white text-3xl font-bold pt-4 pb-8">
           ẮC QUY & LỐP CHO XẾ YÊU
