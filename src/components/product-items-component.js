@@ -16,18 +16,19 @@ export default function ProductItemsComponent(item) {
     promotion,
     save = originalPrice - price,
     description,
+    warranty_policy,
     onClick,
   } = item;
   const [html, setHtml] = useState("");
- 
+  const [activeContent, setActiveContent] = useState(1)
   useEffect(() => {
-    axiosInstance.get("/htmls/" + description).then((res) => {
+    axiosInstance.get(`/htmls/${activeContent == 1 ? description :warranty_policy} ` ).then((res) => {
       if (res) {
         
         setHtml(res.data);
       }
     });
-  }, []);
+  }, [activeContent]);
   const [image, setImage] = useState(images[0]);
   const [count, setCount] = useState(1);
   const increase = () => {
@@ -38,7 +39,7 @@ export default function ProductItemsComponent(item) {
       setCount(count - 1);
     }
   };
-  const [activeContent, setActiveContent] = useState(1);
+ ;
   const handleContentClick = (contentNumber) => {
     setActiveContent(contentNumber);
   };

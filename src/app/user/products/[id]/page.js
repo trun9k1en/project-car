@@ -40,6 +40,7 @@ export default function ProductItems() {
           rate={products.rate}
           promotion={products.promotion}
           description={products.description}
+          warranty_policy ={products.warranty_policy}
           onClick={() => handleAddToCart(products)}
         />
       ) : null}
