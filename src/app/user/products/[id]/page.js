@@ -2,9 +2,10 @@
 
 import axiosInstance from "@/axios/api-config";
 import { product } from "@/axios/endpoints";
+import CartCard from "@/components/cart-card";
 import ProductItemsComponent from "@/components/product-items-component";
 
-import {  useCartContext } from "@/provider/CartContext";
+import { useCartContext } from "@/provider/CartContext";
 import { useParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 export default function ProductItems() {
@@ -19,10 +20,14 @@ export default function ProductItems() {
       });
     }
   }, [params.id]);
-  const { addToCart ,cart} = useCartContext();
+  const [open, isOpen] = useState(false);
+  const { addToCart, cart } = useCartContext();
   const handleAddToCart = (product) => {
-   
     addToCart(product);
+    isOpen(true);
+  };
+  const onClose = () => {
+    isOpen(false);
   };
   return (
     <div className="flex">
@@ -38,6 +43,7 @@ export default function ProductItems() {
           onClick={() => handleAddToCart(products)}
         />
       ) : null}
+      <CartCard open={open} cart= {cart}  onClose={onClose}/>
     </div>
   );
 }
