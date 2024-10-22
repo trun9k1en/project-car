@@ -35,8 +35,8 @@ export default function Banner() {
  
   }, [selectedCarCompanyId]);
   return (
-    <div className={`${pathname !== "/san-pham" ? "hidden" : "relative"} flex w-full bg-[url('/slider_1.webp')] bg-cover h-[500px] `}>
-      <div className="w-[500px] h-[345px] backdrop-brightness-75 text-center absolute left-20 top-20">
+    <div className={`${pathname !== "/san-pham" ? "hidden" : "relative"} flex w-full bg-[url('/thilop.png')] bg-cover h-[700px] `}>
+      <div className="w-[500px] h-[345px] backdrop-brightness-75 text-center absolute right-20 top-40">
         <div className="text-white text-3xl font-bold pt-4 pb-8">
           ẮC QUY & LỐP CHO XẾ YÊU
         </div>

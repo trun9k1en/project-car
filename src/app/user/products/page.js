@@ -13,7 +13,11 @@ export default function Products() {
     },
     {
       index: 2,
-      name: "CÁC SẢN PHẨM KHÁC",
+      name: "Giảm xóc Tein Nhật Bản",
+    },
+    {
+      index: 3,
+      name: "Các sản phẩm khác",
     }
   ];
   return (

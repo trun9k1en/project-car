@@ -41,7 +41,7 @@ export default function ProductItems() {
           promotion={products.promotion}
           description={products.description}
           warranty_policy ={products.warranty_policy}
-          onClick={() => handleAddToCart(products)}
+          onClick={(count) => handleAddToCart({...products, count:count})}
         />
       ) : null}
       <CartCard open={open} cart= {cart}  onClose={onClose}/>

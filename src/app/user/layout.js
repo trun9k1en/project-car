@@ -24,12 +24,15 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import HeaderComponent from "@/components/header-component";
 import Navbar from "@/components/navbar";
 import Services from "@/components/services";
+import DropDownComponent from "@/components/dropdown-component";
+import axiosInstance from "@/axios/api-config";
+import { car, carTypes } from "@/axios/endpoints";
 
 const drawerWidth = 240;
 const menus = [
@@ -134,16 +137,57 @@ export default function LayoutNavigation({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const [activeButton, setActiveButton] = React.useState(1);
+  const [carCompany, setCarCompany] = React.useState([]);
+  const [carName, setCarName] = React.useState([]);
+  const pathname = usePathname()
+
+  const [selectedCarCompanyId, setSelectedCarCompanyId] = React.useState(null);
+  const handleButtonClick = (buttonNumber) => {
+    setActiveButton(buttonNumber);
+  };
+  React.useEffect(() => {
+    axiosInstance.get(carTypes).then((response) => {
+      if (response.data.data) {
+        setCarCompany(response.data.data);
+      }
+    });
+  }, []);
+  React.useEffect(() => {
+    if(selectedCarCompanyId){
+      axiosInstance.get(car + "?id=" + selectedCarCompanyId.id).then((response) => {
+        if (response.data.data) {
+          setCarName(response.data.data.children);
+          console.log("kien",response.data.data);
+        }
+      });
+    }
+ 
+  }, [selectedCarCompanyId]);
   const router = useRouter();
   return (
     <main className="flex flex-col min-h-screen min-w-screen  min-w-full bg-[#FFFFFF]	!p-0 items-center  justify-items-center">
       <HeaderComponent />
       <Navbar />
       <Banner />
-      <div className="flex flex-col px-6 max-w-[1200px] ">  {children}</div>
+      <div className="flex flex-col px-6 max-w-[1200px] "> {children}</div>
       <Services />
       <Footer />
-    
+      <div className="fixed bottom-0 bg-blue-500 flex flex-row items-center w-full justify-center">
+        <input placeholder="Tên sản phẩm" className="w-[100px]"></input>
+        <DropDownComponent
+          data={carCompany}
+          onChange={(e) => setSelectedCarCompanyId(e.target.value)}
+          value={selectedCarCompanyId}
+          name={"Hãng xe"}
+        />
+        <DropDownComponent
+          data={carName}
+          onChange={() => {}}
+          value={carName[0]}
+          name={"Tên xe"}
+        />
+      </div>
     </main>
   );
 }

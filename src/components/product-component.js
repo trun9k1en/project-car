@@ -18,6 +18,14 @@ export default function ProductComponent({ index, name }) {
       }
     });
     if (index == 2) {
+      axiosInstance.get("product-types?skip=9").then((response) => {
+        if (response.data.data) {
+          setTypes(response.data.data);
+          setType(response.data.data[0].type)
+        }
+      });
+    }
+    if (index == 3) {
       axiosInstance.get("product-types?skip=3").then((response) => {
         if (response.data.data) {
           setTypes(response.data.data);
@@ -31,15 +39,13 @@ export default function ProductComponent({ index, name }) {
       setProducts([]);
  
       axiosInstance.get(products + "?type=" + type).then((response) => {
-        if (response.data.data) {
-          console.log('chay vao day')
+        if (response.data.data) { 
           setProducts([...response.data.data]);
         }
         else{
           setProducts([]);
   
         }
-        // hideLoading()
       });
     }
   },[type])
