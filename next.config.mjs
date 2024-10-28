@@ -38,6 +38,20 @@ const nextConfig = {
         destination: '/user/products/:id', 
              // Đường dẫn nội bộ của ứng dụng
       },
+      {
+        source: '/lop-xe',            // Đường dẫn yêu cầu từ phía người dùng
+        destination: '/user/tires', 
+             // Đường dẫn nội bộ của ứng dụng
+      },
+      {
+        source: '/ac-quy',            // Đường dẫn yêu cầu từ phía người dùng
+        destination: '/user/batterys', 
+             // Đường dẫn nội bộ của ứng dụng
+      },
+      {
+        source:"/phuoc-giam-soc",
+        destination:"/user/teins"
+      }
     ];
   },
     // exportPathMap() {

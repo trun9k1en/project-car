@@ -1,23 +1,25 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const array = [
   {
     name: "TRANG CHỦ",
-    hrl: "/",
+    hrl: "/san-pham",
   },
   {
     name: "ẮC QUY",
-    hrl: "/",
+    hrl: "/ac-quy",
   },
   {
     name: "LỐP",
-    hrl: "/",
+    hrl: "/lop-xe",
   },
   {
-    name: "PHỤ TÙNG KHÁC",
-    hrl: "/",
+    name: "Phuộc giảm sóc",
+    hrl: "/phuoc-giam-soc",
   },
   {
     name: "PHỤ KIỆN",
@@ -43,18 +45,19 @@ const array = [
 
 export default function Navbar() {
   const [activeText, setActiveText] = useState(0);
+
   return (
     <div className="flex w-full mt-4 justify-center bg-blue-700">
       {array.map((m, index) => (
-        <button
+        <Link
           key={index}
-          onClick={() => setActiveText(index)}
-          className={`font-semibold text-base p-4 ${
-            activeText === index ? `text-[#232431FF]` : `text-white`
-          }`}
-        >
+          onClick={() => {
+            // route.push("/lop-xe");
+            setActiveText(index);
+          } }
+          className={`font-semibold text-base p-4 ${activeText === index ? `text-[#232431FF]` : `text-white`}`} href={m.hrl}>
           {m.name}
-        </button>
+        </Link>
       ))}
     </div>
   );

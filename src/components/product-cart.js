@@ -1,6 +1,6 @@
 "use client";
 
-import { CartContext } from "@/provider/CartContext";
+
 import numeral from "numeral";
 import { useContext, useState } from "react";
 

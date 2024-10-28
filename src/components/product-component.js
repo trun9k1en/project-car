@@ -6,50 +6,40 @@ import { useContext, useEffect, useState } from "react";
 import ProductItem from "./product-item";
 import { LoadingProvider, useLoading } from "@/context/loading-context";
 
-export default function ProductComponent({ index, name }) {
+export default function ProductComponent({ index, name, children = [], limit = 20  }) {
   const [data, setProducts] = useState([]);
-  const [types, setTypes] = useState([]);
-  const [type,setType] = useState(0);
-  
+  const [type, setType] = useState(0);
+  console.log("children", children);
   useEffect(() => {
-    axiosInstance.get(products + "?type=" + index).then((response) => {
-      if (response.data.data) {
-        setProducts(response.data.data);
-      }
-    });
-    if (index == 2) {
-      axiosInstance.get("product-types?skip=9").then((response) => {
+    if (children.length > 0) {
+      axiosInstance
+        .get(products + "?type=" + children[0].type +"&pageNumber=1&pageSize="+limit)
+        .then((response) => {
+          if (response.data.data) {
+            setProducts(response.data.data);
+          }
+        });
+    } else {
+      axiosInstance.get(products + "?type=" + index+"&pageNumber=1&pageSize=" + limit).then((response) => {
         if (response.data.data) {
-          setTypes(response.data.data);
-          setType(response.data.data[0].type)
+          setProducts(response.data.data);
         }
       });
     }
-    if (index == 3) {
-      axiosInstance.get("product-types?skip=3").then((response) => {
-        if (response.data.data) {
-          setTypes(response.data.data);
-          setType(response.data.data[0].type)
-        }
-      });
-    }
-  }, []);
-  useEffect(() =>{
-    if(type){
+  }, [children]);
+  useEffect(() => {
+    if (type) {
       setProducts([]);
- 
-      axiosInstance.get(products + "?type=" + type).then((response) => {
-        if (response.data.data) { 
+      axiosInstance.get(products + "?type=" + type+"&pageNumber=1&pageSize=5").then((response) => {
+        if (response.data.data) {
           setProducts([...response.data.data]);
-        }
-        else{
+        } else {
           setProducts([]);
-  
         }
       });
     }
-  },[type])
-  const [textActive, setTextActive] = useState(0);
+  }, [type]);
+
   return (
     <div className="flex flex-col">
       {index != 2 ? (
@@ -67,15 +57,15 @@ export default function ProductComponent({ index, name }) {
           </div>
         </div>
       )}
-
       <div className="flex justify-between w-[720px] self-center">
-        {index == 2
-          ? types.map((m) => (
-              <div onClick={()=>setType(m.type)} className="text-base text-[#474a62] hover:text-[#03BE1CFF]">
-                {m.name}
-              </div>
-            ))
-          : null}
+        {children.map((m) => (
+          <div
+            onClick={() => setType(m.type)}
+            className="text-base text-[#474a62] hover:text-[#03BE1CFF]"
+          >
+            {m.name}
+          </div>
+        ))}
       </div>
       <div className="grid grid-cols-5 gap-4">
         {data.map((m) => (

@@ -1,7 +1,19 @@
 "use client";
 
+import axiosInstance from "@/axios/api-config";
+import { home } from "@/axios/endpoints";
 import ProductComponent from "@/components/product-component";
+import { useEffect, useState } from "react";
 export default function Products() {
+  const [homeTitle, setHomeTitle] = useState([])
+  useEffect(()=>{
+    axiosInstance.get(home).then((res)=>{
+      if(res && res.data && res.data.code===200){
+        console.log('res.data',res.data)
+        setHomeTitle(res.data.data)
+      }
+    })
+  },[])
   const arraytype = [
     {
       index: 0,
@@ -22,8 +34,8 @@ export default function Products() {
   ];
   return (
     <div className="flex flex-col">
-      {arraytype.map((m,index) => {
-        return <div key={index}><ProductComponent index={index} name={m.name} /></div>;
+      {homeTitle.map((m,index) => {
+        return <div key={index}><ProductComponent index={m.type} name={m.name} children ={m.children} limit={5}/></div>;
       })}
     </div>
   );

@@ -24,7 +24,7 @@ export default function ProductItem(item) {
       }}
     >
       <img
-        src="https://bizweb.dktcdn.net/thumb/1024x1024/100/366/403/products/michelinenergyxm2plus-b47d8a57-677c-49de-b8d0-e6f6e6b0a4b5.jpg?v=1678355816577"
+        src={`http://192.168.1.9:8080${item.thumnail}`}
         className="mb-2 w-[210px]"
       />
       <div className="color font-size: 1rem w-[210px] hover:text-[#03BE1CFF]">
